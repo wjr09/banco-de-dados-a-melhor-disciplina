@@ -47,7 +47,20 @@ BEGIN
     FROM Livro
     INNER JOIN Autor_Livro ON Livro.Livro_ID = Autor_Livro.Livro_ID
     INNER JOIN Autor ON Autor_Livro.Autor_ID = Autor.Autor_ID
-    WHERE Livro.Ano_Publicacao <= ano_fornecido
-    ORDER BY Livro.Ano_Publicacao;
+-- exercicio 6
+CREATE PROCEDURE sp_TitulosPorCategoria(IN categoria_nome VARCHAR(100))
+BEGIN
+    SELECT Livro.Titulo
+    FROM Livro
+    JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+    WHERE Categoria.Nome = categoria_nome;
+END //
+-- exercicio 8
+CREATE PROCEDURE sp_AutorMaisAntigo(OUT autor_mais_antigo VARCHAR(255))
+BEGIN
+    SELECT CONCAT(Nome, Sobrenome) INTO autor_mais_antigo
+    FROM Autor
+    WHERE Data_Nascimento = (
+        SELECT MIN(Data_Nascimento) FROM Autor
+    );
 END;
-//

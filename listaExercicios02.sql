@@ -40,3 +40,14 @@ BEGIN
     END IF;
 END;
 //
+-- exercicio 5
+CREATE PROCEDURE sp_LivrosAteAno(IN ano_fornecido INT)
+BEGIN
+    SELECT Livro.Titulo, Autor.Nome, Autor.Sobrenome, Livro.Ano_Publicacao
+    FROM Livro
+    INNER JOIN Autor_Livro ON Livro.Livro_ID = Autor_Livro.Livro_ID
+    INNER JOIN Autor ON Autor_Livro.Autor_ID = Autor.Autor_ID
+    WHERE Livro.Ano_Publicacao <= ano_fornecido
+    ORDER BY Livro.Ano_Publicacao;
+END;
+//

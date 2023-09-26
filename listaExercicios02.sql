@@ -25,3 +25,18 @@ BEGIN
     WHERE Categoria.Nome = categoria_nome;
 END;
 //
+-- exercicio 4
+CREATE PROCEDURE sp_VerificarLivrosCategoria(IN categoria_nome VARCHAR(100), OUT categoria_tem_livros BOOLEAN)
+BEGIN
+    DECLARE total_livros INT;
+    SELECT COUNT(*) INTO total_livros
+    FROM Livro
+    INNER JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
+    WHERE Categoria.Nome = categoria_nome;
+    IF total_livros > 0 THEN
+        SET categoria_tem_livros = TRUE;
+    ELSE
+        SET categoria_tem_livros = FALSE;
+    END IF;
+END;
+//

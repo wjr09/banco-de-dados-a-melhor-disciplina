@@ -54,7 +54,8 @@ BEGIN
     FROM Livro
     JOIN Categoria ON Livro.Categoria_ID = Categoria.Categoria_ID
     WHERE Categoria.Nome = categoria_nome;
-END //
+END 
+//
 -- exercicio 8
 CREATE PROCEDURE sp_AutorMaisAntigo(OUT autor_mais_antigo VARCHAR(255))
 BEGIN
@@ -64,3 +65,4 @@ BEGIN
         SELECT MIN(Data_Nascimento) FROM Autor
     );
 END;
+//

@@ -28,8 +28,8 @@ CREATE TABLE produtos (
 -- b) Utilize a função ROUND() para arredondar os preços para 2 casas decimais.
 INSERT INTO produtos (produto, preco, quantidade)
 VALUES
-    ('Produto1', ROUND(19.9999, 2), 10),
-    ('Produto2', ROUND(20.999, 2), 5),
+    ('Produto1', ROUND(19.99, 2), 10),
+    ('Produto2', ROUND(20.99, 2), 5),
     ('Produto3', ROUND(5.59, 2), 20);
 
 -- c) Use a função ABS() para exibir o valor absoluto das quantidades.
@@ -64,3 +64,21 @@ SELECT
     data_evento,
     DAYNAME(data_evento) AS nome_da_semana
 FROM eventos;
+
+-- 4. Funções de Controle de Fluxo
+
+-- a) Em sua tabela produtos, use a função IF() para determinar se um produto está "Em estoque" ou "Fora de estoque" baseado na quantidade (e.g., se a quantidade for 0, está "Fora de estoque").
+SELECT
+    produto,
+    IF(quantidade > 0, 'Em estoque', 'Fora de estoque') AS quantidade_estoque
+FROM produtos;
+
+-- b) Use a função CASE para classificar os produtos em categorias de preço: "Barato", "Médio" e "Caro".
+SELECT
+    produto,
+    CASE
+        WHEN preco < 15.0 THEN 'Barato'
+        WHEN preco >= 15.0 AND preco < 20.0 THEN 'Médio'
+        ELSE 'Caro'
+    END AS categoria_preco
+FROM produtos;

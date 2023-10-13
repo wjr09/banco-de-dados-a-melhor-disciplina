@@ -37,3 +37,30 @@ SELECT produto, preco, ABS(quantidade) AS quantidade_absoluta FROM produtos;
 
 -- d) Calcule a média dos preços dos produtos utilizando a função AVG().
 SELECT AVG(preco) AS mediaPrecos FROM produtos;
+
+-- 3. Funções de Data:
+
+-- a) Crie uma tabela eventos com uma coluna data_evento contendo algumas datas.
+CREATE TABLE eventos (
+    data_evento DATE
+);
+
+INSERT INTO eventos (data_evento) VALUES
+    ('2024-6-05'),
+    ('2024-7-10'),
+    ('2024-8-15');
+
+-- b) Utilize a função NOW() para inserir a data e hora atual em uma nova linha.
+INSERT INTO eventos (data_evento) VALUES (NOW());
+
+-- c) Use a função DATEDIFF() para calcular o número de dias entre duas datas.
+SELECT
+    data_evento,
+    DATEDIFF(data_evento, '2024-5-05') AS calcular_datas
+FROM eventos;
+
+-- d) Utilize a função DAYNAME() para exibir o nome do dia da semana de cada evento.
+SELECT
+    data_evento,
+    DAYNAME(data_evento) AS nome_da_semana
+FROM eventos;

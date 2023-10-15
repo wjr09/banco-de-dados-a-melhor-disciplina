@@ -82,3 +82,27 @@ SELECT
         ELSE 'Caro'
     END AS categoria_preco
 FROM produtos;
+
+-- 7. Criando funções
+
+-- a) Crie uma função que retorno o Fatorial de um número. Ex.: 5! = 5.4.2.1
+DELIMITER //
+CREATE PROCEDURE calculo_fatorial(IN numero, OUT resultado)
+BEGIN
+  DECLARE i DEFAULT 1;
+  DECLARE fatorial DEFAULT 1;
+  WHILE i <= numero DO
+    SET fatorial = fatorial * i;
+    SET i = i + 1;
+  END WHILE;
+  SET resultado = fatorial;
+END;
+//
+DELIMITER;
+
+-- b) Crie uma função que qualcule o exponencial de um número. Ex.: f_exponencial(2, 3) = 2³ = 8
+CREATE FUNCTION f_exponencial(base NUMERIC, expoente NUMERIC)
+RETURNS NUMERIC AS
+BEGIN
+  RETURN POWER(base, expoente);
+END;

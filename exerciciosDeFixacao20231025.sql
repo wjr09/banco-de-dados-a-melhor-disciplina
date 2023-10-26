@@ -10,4 +10,13 @@ INSERT INTO auditoria (mensagem) VALUES('novo cliente');
 CREATE TRIGGER excluir_cliente 
 BEFORE INSERT ON clientes
 FOR EACH ROW
-INSERT INTO auditoria (mensagem) VALUES('Tentativa de excluir');
+INSERT INTO auditoria (mensagem) VALUES('tentativa de excluir');
+
+-- exercicio 3
+
+CREATE TRIGGER atualizaNome
+AFTER UPDATE ON clientes
+FOR EACH ROW
+    IF OLD.nome != NEW.nome THEN
+        INSERT INTO auditoria (mensagem) VALUES('nome atualizado');
+    END IF;
